@@ -9,6 +9,7 @@ import {
 } from '@/features/portfolio-experience/components/Slides/Slides';
 import { portfolio } from '@/features/portfolio-experience/data/portfolio';
 import { usePortfolioNavigation } from '@/features/portfolio-experience/hooks/usePortfolioNavigation';
+import { useExperienceMotion } from '@/features/portfolio-experience/hooks/useExperienceMotion';
 import { useOrnamentsParallax } from '@/features/portfolio-experience/hooks/useOrnamentsParallax';
 import { useProjectOverlay } from '@/features/portfolio-experience/hooks/useProjectOverlay';
 import './styles/ExperienceLayout.css';
@@ -18,6 +19,7 @@ export function PortfolioExperience() {
   const overlay = useProjectOverlay();
   const navigation = usePortfolioNavigation(overlay.close);
   const viewportRef = useOrnamentsParallax(navigation.active);
+  useExperienceMotion(viewportRef, navigation.active);
 
   return (
     <main className="panel">

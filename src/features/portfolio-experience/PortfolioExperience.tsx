@@ -28,7 +28,7 @@ export function PortfolioExperience() {
   }, [content.meta.productName]);
 
   return (
-    <main className="panel min-h-[calc(100svh-28px)] overflow-hidden rounded-[var(--radius)] bg-cream text-ink">
+    <main className="panel min-h-[calc(100svh-28px)] overflow-hidden rounded-(--radius) bg-cream text-ink">
       <Header active={navigation.active} content={content.header} go={navigation.go} />
       <div
         className="viewport relative flex-1"

@@ -229,9 +229,7 @@ export function ContactSlide({ go }: { go: (index: number) => void }) {
             </button>
           </div>
         </div>
-        <footer className="footer">
-          Lorem ipsum dolor sit amet · © {new Date().getFullYear()}
-        </footer>
+        <footer className="footer">Feito por Guilherme Mota</footer>
       </div>
     </section>
   );

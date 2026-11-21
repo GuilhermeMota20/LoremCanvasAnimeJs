@@ -1,3 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-2);
+  --color-evergreen: var(--gold);
+  --color-jade: var(--gold-2);
+  --color-muted: var(--muted);
+  --font-display: var(--display);
+  --font-body: var(--body);
+  --font-mono: var(--mono);
+}
+
 :root {
   --gutter: clamp(16px, 4vw, 80px);
   --ink: #0c2b22;
@@ -43,7 +57,7 @@
 }
 
 * {
-  box-sizing: border-box;
+  @apply box-border;
   margin: 0;
   padding: 0;
 }
@@ -53,6 +67,7 @@ html {
 }
 
 body {
+  @apply antialiased;
   background: var(--ink);
   color: var(--ink);
   font-family: var(--body);
@@ -62,13 +77,12 @@ body {
 }
 
 img {
-  display: block;
-  max-width: 100%;
+  @apply block max-w-full;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
+  @apply no-underline;
 }
 
 button,
@@ -79,5 +93,5 @@ select {
 }
 
 ul {
-  list-style: none;
+  @apply list-none;
 }

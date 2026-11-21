@@ -28,10 +28,10 @@ export function PortfolioExperience() {
   }, [content.meta.productName]);
 
   return (
-    <main className="panel">
+    <main className="panel min-h-[calc(100svh-28px)] overflow-hidden rounded-[var(--radius)] bg-cream text-ink">
       <Header active={navigation.active} content={content.header} go={navigation.go} />
       <div
-        className="viewport"
+        className="viewport relative flex-1"
         ref={viewportRef}
         onTouchStart={(event) => navigation.onTouchStart(event.touches[0].clientX)}
         onTouchEnd={(event) => navigation.onTouchEnd(event.changedTouches[0].clientX)}

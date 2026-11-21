@@ -1,30 +1,38 @@
-# Portfólio Ilustrativo
+<div align="center">
 
-Experiência interativa com conteúdo demonstrativo em Lorem Ipsum e navegação horizontal por seções.
+# Lorem Canvas AnimeJs
 
-## Arquitetura
+### Portfólio interativo em React
 
-```text
-src/
-  app/       bootstrap, configurações e estilos globais
-  pages/     composição de telas
-  features/  domínio do portfólio e sua experiência interativa
-  shared/    espaço para capacidades reutilizáveis entre domínios
-```
+[![React](https://img.shields.io/badge/React-19-0c2b22?logo=react&logoColor=edf6e9)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3d8c5a?logo=typescript&logoColor=edf6e9)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-82c99a?logo=vite&logoColor=0c2b22)](https://vite.dev/)
+[![Anime.js](https://img.shields.io/badge/Anime.js-4.5-4e705d?logo=javascript&logoColor=edf6e9)](https://animejs.com/)
 
-O domínio está isolado em `src/features/portfolio-experience`:
+![Mockup editorial do portfólio Lorem Ipsum](docs/assets/portfolio-mockup.png)
 
-- `components/`: header, slides, ornamentos e painel de projeto;
-- `hooks/`: controle da navegação e do painel;
-- `data/`: dados de projetos e repertório;
-- `PortfolioExperience.tsx`: composição da experiência.
+</div>
 
-Os tokens e o reset vivem em `src/app/styles/globals.css`; os estilos de cada componente ficam co-localizados na respectiva pasta.
+> Uma experiência de portfólio ilustrativa com navegação horizontal, galeria de projetos e visual editorial em tons verdes.
 
-## Comandos
+## Objetivo
+
+Explorar uma interface de portfólio com navegação por seções, transições visuais e interação contextual para apresentar projetos de forma mais dinâmica do que uma landing page convencional. O **Anime.js** orquestra as entradas dos conteúdos por seção, criando uma experiência mais fluida, intuitiva e personalizada sem comprometer a preferência de redução de movimento do sistema.
+
+## Recursos
+
+- Navegação entre início, galeria, sobre e contato.
+- Cards de projeto com prévia por hover e modal de detalhes.
+- Layout responsivo: modal central no desktop e painel inferior no mobile.
+- Entradas sequenciadas com Anime.js, parallax e tokens CSS para uma identidade visual consistente.
+
+## Tecnologias
+
+`React 19` · `TypeScript` · `Vite` · `Anime.js` · `CSS` · `Font Awesome`
+
+## Executar
 
 ```bash
 npm install
 npm run dev
-npm run build
 ```

@@ -1,11 +1,10 @@
 # Arquitetura
 
-O projeto preserva a separação `app → pages → features → shared`.
+O projeto preserva a separação `app → pages → features`.
 
 - `app` inicializa a aplicação e concentra configurações e estilos globais necessários à identidade visual transversal.
 - `pages` faz apenas a composição de tela.
 - `features/portfolio-experience` concentra a experiência de navegação, os componentes específicos, dados e hooks do portfólio.
-- `shared` permanece reservado para componentes que se tornem reutilizáveis por mais de um domínio.
 
 ## Estilos
 

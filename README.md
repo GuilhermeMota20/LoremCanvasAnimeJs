@@ -8,6 +8,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3d8c5a?logo=typescript&logoColor=edf6e9)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6-82c99a?logo=vite&logoColor=0c2b22)](https://vite.dev/)
 [![Anime.js](https://img.shields.io/badge/Anime.js-4.5-4e705d?logo=javascript&logoColor=edf6e9)](https://animejs.com/)
+[![Prismic](https://img.shields.io/badge/Prismic-CMS-3d8c5a?logo=prismic&logoColor=edf6e9)](https://prismic.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-82c99a?logo=tailwindcss&logoColor=0c2b22)](https://tailwindcss.com/)
 
 ![Mockup editorial do portfólio Lorem Ipsum](docs/assets/portfolio-mockup.png)
 
@@ -17,14 +19,14 @@
 
 ## Objetivo
 
-Explorar uma interface de portfólio com navegação por seções, transições visuais e interação contextual para apresentar projetos de forma mais dinâmica do que uma landing page convencional. O **Anime.js** orquestra as entradas dos conteúdos por seção, criando uma experiência mais fluida, intuitiva e personalizada sem comprometer a preferência de redução de movimento do sistema.
+Explorar uma interface de portfólio com navegação por seções, transições visuais e interação contextual para apresentar projetos de forma mais dinâmica do que uma landing page convencional. O **Anime.js** orquestra as entradas dos conteúdos por seção, criando uma experiência mais fluida, intuitiva e personalizada sem comprometer a preferência de redução de movimento do sistema. A arquitetura também está preparada para integrar o **Prismic CMS**, permitindo atualizar textos, imagens e links externos sem alterar os componentes da interface.
 
 ## Recursos
 
 - Navegação entre início, galeria, sobre e contato.
 - Cards de projeto com prévia por hover e modal de detalhes.
 - Layout responsivo: modal central no desktop e painel inferior no mobile.
-- Entradas sequenciadas com Anime.js, parallax e tokens CSS para uma identidade visual consistente.
+- Entradas sequenciadas com Anime.js, parallax e tokens de tema para uma identidade visual consistente.
 - Navegação por teclado, swipe e suporte a `prefers-reduced-motion`.
 
 ## Arquitetura
@@ -43,11 +45,11 @@ src/
         └── styles/      # Layout e responsividade
 ```
 
-Os tokens em CSS centralizam cores, overlays, máscaras e sombras; assim, a identidade visual pode evoluir sem espalhar valores estáticos pelos componentes. Anime.js é usado para entradas orquestradas, enquanto CSS mantém animações contínuas de baixo custo.
+O Tailwind CSS v4 fornece a base de utilitários e expõe os tokens semânticos da paleta para os componentes. O CSS co-localizado permanece responsável pelos detalhes autorais — máscaras, ruído, keyframes e composições decorativas — sem espalhar valores estáticos. Anime.js orquestra as entradas, enquanto CSS sustenta animações contínuas de baixo custo.
 
-## Tecnologias
+## Tecnologias e skills
 
-`React 19` · `TypeScript` · `Vite` · `Anime.js` · `CSS` · `Font Awesome`
+`React 19` · `TypeScript` · `Vite` · `Tailwind CSS` · `Anime.js` · `Prismic CMS` · `Font Awesome`
 
 ## Conteúdo
 

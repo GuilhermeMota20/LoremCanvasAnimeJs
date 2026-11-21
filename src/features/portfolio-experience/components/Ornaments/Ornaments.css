@@ -1,0 +1,26 @@
+.ornaments {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.fl--sparkle path {
+  fill: var(--gold-2);
+  stroke: var(--ink);
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+.fl--bolt path {
+  fill: var(--gold);
+  stroke: var(--ink);
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+.fl--sun circle:first-of-type {
+  fill: var(--gold-2);
+}
+.fl--sun .fl__sun-outline {
+  fill: none;
+  stroke: var(--ink);
+  stroke-dasharray: 6 5;
+  stroke-width: 2.5;
+}

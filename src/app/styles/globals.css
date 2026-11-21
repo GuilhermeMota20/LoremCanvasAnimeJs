@@ -1,0 +1,83 @@
+:root {
+  --gutter: clamp(16px, 4vw, 80px);
+  --ink: #0c2b22;
+  --ink-rgb: 12 43 34;
+  --cream: #d8ead7;
+  --cream-2: #edf6e9;
+  --gold: #3d8c5a;
+  --gold-2: #82c99a;
+  --muted: #4e705d;
+  --on-ink: #fff;
+  --on-ink-muted: rgb(255 255 255 / 0.62);
+  --ink-overlay-subtle: rgb(var(--ink-rgb) / 0.07);
+  --ink-overlay-soft: rgb(var(--ink-rgb) / 0.1);
+  --ink-overlay-soft-strong: rgb(var(--ink-rgb) / 0.11);
+  --ink-transparent: rgb(var(--ink-rgb) / 0);
+  --ink-overlay-medium: rgb(var(--ink-rgb) / 0.12);
+  --ink-overlay-control: rgb(var(--ink-rgb) / 0.18);
+  --ink-shadow: rgb(var(--ink-rgb) / 0.22);
+  --ink-overlay-scrollbar: rgb(var(--ink-rgb) / 0.35);
+  --ink-overlay-strong: rgb(var(--ink-rgb) / 0.45);
+  --ink-overlay-image: rgb(var(--ink-rgb) / 0.55);
+  --cream-2-transparent: rgb(237 246 233 / 0);
+  --cream-2-translucent: rgb(237 246 233 / 0.25);
+  --cream-2-soft: rgb(237 246 233 / 0.5);
+  --cream-2-muted: rgb(237 246 233 / 0.75);
+  --browser-surface: #173f31;
+  --browser-dot: #6d927b;
+  --media-black: #000;
+  --mask-solid: #000;
+  --mask-fade: rgb(0 0 0 / 0.4);
+  --mask-fade-strong: rgb(0 0 0 / 0.6);
+  --project-01: #4d9569;
+  --project-02: #8bcf73;
+  --project-03: #1f7a50;
+  --project-04: #b9dc87;
+  --project-05: #2f6848;
+  --project-06: #a5d6a7;
+  --radius: 28px;
+  --notch-r: 22px;
+  --display: 'Archivo', system-ui, sans-serif;
+  --body: 'Instrument Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.55;
+  padding: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}

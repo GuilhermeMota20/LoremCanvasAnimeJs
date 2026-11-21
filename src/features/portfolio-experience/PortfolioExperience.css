@@ -1,0 +1,82 @@
+.ornament-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+.viewport > .track {
+  position: relative;
+  z-index: 1;
+}
+.viewport > .ornament-track {
+  z-index: 0;
+}
+
+.wipe {
+  z-index: 40;
+}
+.header {
+  z-index: 45;
+}
+.ornament-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+.pop:not(.is-sheet) {
+  max-height: calc(100svh - 24px);
+  overflow-y: auto;
+}
+.wipe.is-active .wipe__bar {
+  animation: eyecatch 1.15s cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+.wipe.is-active .wipe__bar--ink {
+  animation-delay: 75ms;
+}
+.wipe.is-active .wipe__bar--cream {
+  animation-delay: 150ms;
+}
+.wipe.is-active .wipe__label,
+.wipe.is-active .wipe__sub {
+  animation: wipe-label 1.15s ease both;
+}
+@keyframes eyecatch {
+  0% {
+    transform: translateX(-170vw) skewX(-14deg);
+  }
+  45% {
+    transform: translateX(26vw) skewX(-14deg);
+  }
+  100% {
+    transform: translateX(175vw) skewX(-14deg);
+  }
+}
+@keyframes wipe-label {
+  0%,
+  20% {
+    opacity: 0;
+    transform: skewX(14deg) scale(1.45);
+  }
+  38%,
+  58% {
+    opacity: 1;
+    transform: skewX(14deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: skewX(14deg) scale(0.95);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wipe.is-active .wipe__bar,
+  .wipe.is-active .wipe__label,
+  .wipe.is-active .wipe__sub,
+  .fl__in,
+  .fl--sparkle svg,
+  .fl--sun svg {
+    animation: none;
+  }
+}

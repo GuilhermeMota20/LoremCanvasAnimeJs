@@ -1,0 +1,434 @@
+/* Experiência compartilhada da landing */
+.panel {
+  position: relative;
+  display: flex;
+  height: calc(100svh - 28px);
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius);
+  background: var(--cream);
+}
+.panel::after {
+  position: absolute;
+  z-index: 50;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  content: '';
+}
+
+/* ---------- SLIDES ---------- */
+.viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-overlay-scrollbar) transparent;
+}
+.slide--hero {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 1001px) {
+  .slide {
+    overflow-y: hidden;
+  }
+} /* desktop: sem rolagem, o JS encaixa o conteúdo */
+.slide:not(.slide--hero) {
+  display: flex;
+}
+.slide:not(.slide--hero) > .section {
+  margin: auto 0;
+  width: 100%;
+}
+
+/* ---------- OBJETOS FLUTUANTES ---------- */
+.slide {
+  position: relative;
+}
+.slide > .hero,
+.slide > .section,
+.slide > .marquee {
+  position: relative;
+  z-index: 1;
+}
+.floaters {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.floaters--back {
+  z-index: 0;
+}
+.floaters--front {
+  z-index: 2;
+}
+.slide--hero .floaters {
+  bottom: 70px;
+} /* não cobre a faixa */
+.fl {
+  --s: 60px;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  rotate: var(--r);
+  /* parallax: JS escreve na propriedade `translate` (independente do transform do anime.js) */
+}
+.fl__in {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.fl svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+.fl--sparkle svg {
+  filter: drop-shadow(3px 3px 0 var(--ink));
+}
+.fl--bolt {
+  width: calc(var(--s) * 0.66);
+}
+.fl--bolt svg {
+  filter: drop-shadow(3px 3px 0 var(--ink));
+}
+.fl--sun {
+  opacity: 0.7;
+}
+.fl__halftone {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--ink) 1.7px, transparent 2px) 0 0 / 13px 13px;
+  -webkit-mask-image: radial-gradient(circle, var(--mask-solid) 0%, var(--mask-fade-strong) 45%, transparent 70%);
+  mask-image: radial-gradient(circle, var(--mask-solid) 0%, var(--mask-fade-strong) 45%, transparent 70%);
+  opacity: 0.32;
+}
+/* eyecatch wipe */
+.wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  overflow: hidden;
+}
+.wipe__bar {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  transform: translateX(-200vw) skewX(-14deg);
+  will-change: transform;
+}
+.wipe__bar--gold {
+  width: 46vw;
+  background: var(--gold);
+}
+.wipe__bar--ink {
+  width: 38vw;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 0 0 6px var(--gold-2);
+}
+.wipe__bar--cream {
+  width: 14vw;
+  background: repeating-linear-gradient(90deg, var(--cream-2) 0 10px, transparent 10px 18px);
+}
+.wipe__label {
+  font-size: clamp(48px, 7vw, 120px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  transform: skewX(14deg);
+  white-space: nowrap;
+}
+.wipe__sub {
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: clamp(12px, 1vw, 16px);
+  color: var(--gold-2);
+  transform: skewX(14deg);
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 8px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--cream-2);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s;
+  box-shadow: 0 0 0 var(--ink);
+}
+.pill-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.pill-btn--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+.pill-btn--dark:hover {
+  box-shadow: 3px 3px 0 var(--gold);
+}
+.pill-btn--cv .dl-ic {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.6);
+}
+.pill-btn--cv:hover .dl-ic {
+  transform: translateY(2px);
+}
+.pill-btn--dark.pill-btn--cv {
+  background: var(--gold);
+  color: var(--ink);
+}
+.pill-btn--dark.pill-btn--cv:hover {
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.li-ic {
+  display: none;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 24px;
+  }
+  .hero__title {
+    font-size: clamp(44px, 14cqi, 140px);
+  }
+  .hero__visual {
+    justify-content: center;
+  }
+  .hero__visual .frame {
+    margin: 0 auto;
+    width: min(100%, 520px);
+  }
+  .badge {
+    --badge: 130px;
+    left: 4px;
+    bottom: -24px;
+  }
+  .slide--hero .hero {
+    flex: none;
+  }
+  .about__body {
+    grid-template-columns: 1fr;
+  }
+  .about__photo {
+    width: min(100%, 380px);
+    justify-self: center;
+  }
+  .pager__dots {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  body {
+    padding: 8px;
+  }
+  :root {
+    --radius: 20px;
+    --notch-r: 16px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 0 16px;
+  }
+  /* menu vira barra inferior flutuante: laterais transparentes, conteúdo rola por trás */
+  .header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+  .notch {
+    pointer-events: auto;
+  }
+  /* iPhone: o Safari ignora o padding final de áreas com rolagem, então o espaço do menu vai dentro do conteúdo */
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .slide {
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slide > .section {
+    padding-bottom: calc(110px + env(safe-area-inset-bottom));
+  }
+  .slide--hero > .marquee {
+    margin-bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+  .notch {
+    position: static;
+    transform: none;
+    align-self: center;
+    padding: 10px 14px calc(8px + env(safe-area-inset-bottom));
+    border-radius: var(--notch-r) var(--notch-r) 0 0;
+  }
+  .notch::before,
+  .notch::after {
+    top: auto;
+    bottom: 0;
+  }
+  .notch::before {
+    background: radial-gradient(
+      circle at 0 0,
+      transparent calc(var(--notch-r) - 0.5px),
+      var(--ink) var(--notch-r)
+    );
+  }
+  .notch::after {
+    background: radial-gradient(
+      circle at 100% 0,
+      transparent calc(var(--notch-r) - 0.5px),
+      var(--ink) var(--notch-r)
+    );
+  }
+  .notch ul {
+    gap: 6px;
+  }
+  .notch a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 64px;
+    padding: 4px 6px 10px;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+  }
+  .notch__ic {
+    display: block;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.5);
+  }
+  .notch a.active .notch__ic {
+    transform: translateY(-2px) scale(1.12);
+    color: var(--gold-2);
+  }
+  .logo,
+  .header__right {
+    display: none;
+  }
+  .about__photo {
+    width: min(100%, 300px);
+  }
+  .fl--desk {
+    display: none;
+  }
+  .fl {
+    scale: 0.65;
+    left: var(--mx);
+    top: var(--my);
+  }
+  .slide--hero .floaters {
+    bottom: 54px;
+  }
+  .hero {
+    padding-top: 32px;
+    padding-bottom: 56px;
+  }
+  .badge {
+    display: none;
+  }
+  .hero__sub {
+    font-size: 16px;
+  }
+  .section {
+    padding-top: 80px;
+    padding-bottom: 24px;
+  }
+  .card {
+    padding: 24px;
+  }
+  .card--gold {
+    padding: 56px 22px 40px;
+  }
+  .marquee__group span,
+  .marquee__group i {
+    font-size: 16px;
+  }
+  .marquee {
+    --marquee-gap: 12px;
+  }
+}
+
+@media (max-width: 720px) {
+  .panel {
+    height: calc(100svh - 16px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee__track,
+  .dot::after {
+    animation: none;
+  }
+}

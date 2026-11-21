@@ -23,6 +23,14 @@
   box-shadow: 10px 10px 0 var(--ink);
   content: '';
 }
+.media-fallback__image {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .media-fallback__grid {
   position: absolute;
   inset: 0;
@@ -72,7 +80,12 @@
 }
 .media-fallback--hero {
   background:
-    linear-gradient(135deg, transparent 48%, var(--ink-overlay-soft-strong) 48% 52%, transparent 52%),
+    linear-gradient(
+      135deg,
+      transparent 48%,
+      var(--ink-overlay-soft-strong) 48% 52%,
+      transparent 52%
+    ),
     var(--gold-2);
 }
 .media-fallback--hero::before {

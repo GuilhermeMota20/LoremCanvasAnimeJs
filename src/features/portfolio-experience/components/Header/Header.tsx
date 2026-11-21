@@ -1,19 +1,15 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
+import type { PortfolioContent } from '@/features/portfolio-experience/data/portfolio';
 import './Header.css';
 
-type Props = { active: number; go: (index: number) => void };
-const links = [
-  ['Início', 'fa-house'],
-  ['Galeria', 'fa-grip'],
-  ['Sobre', 'fa-user'],
-  ['Contato', 'fa-envelope'],
-] as const;
+type Props = { active: number; content: PortfolioContent['header']; go: (index: number) => void };
 
-export function Header({ active, go }: Props) {
+export function Header({ active, content, go }: Props) {
   const listRef = useRef<HTMLUListElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
   useLayoutEffect(() => {
     const sync = () => {
       const list = listRef.current;
@@ -24,6 +20,7 @@ export function Header({ active, go }: Props) {
     window.addEventListener('resize', sync);
     return () => window.removeEventListener('resize', sync);
   }, [active]);
+
   const navigate = (event: MouseEvent<HTMLAnchorElement>, index: number) => {
     event.preventDefault();
     go(index);
@@ -32,14 +29,15 @@ export function Header({ active, go }: Props) {
   return (
     <header className="header">
       <a className="logo" href="#inicio" onClick={(event) => navigate(event, 0)}>
-        Lorem<span>.ipsum</span>
+        {content.brand.primary}
+        <span>{content.brand.accent}</span>
       </a>
-      <nav className="notch" aria-label="Principal">
+      <nav className="notch" aria-label={content.navigationLabel}>
         <ul ref={listRef}>
-          {links.map(([label, icon], index) => (
-            <li key={label}>
+          {content.navigation.map((link, index) => (
+            <li key={link.id}>
               <a
-                href={`#${label.toLowerCase()}`}
+                href={`#${link.id}`}
                 className={active === index ? 'active' : ''}
                 ref={(element) => {
                   linkRefs.current[index] = element;
@@ -47,8 +45,8 @@ export function Header({ active, go }: Props) {
                 aria-current={active === index ? 'page' : undefined}
                 onClick={(event) => navigate(event, index)}
               >
-                <i className={`notch__ic fa-solid ${icon}`} aria-hidden="true" />
-                <span>{label}</span>
+                <i className={`notch__ic fa-solid ${link.icon}`} aria-hidden="true" />
+                <span>{link.name}</span>
               </a>
             </li>
           ))}
@@ -61,27 +59,27 @@ export function Header({ active, go }: Props) {
             className="pager__btn"
             onClick={() => go(active - 1)}
             disabled={active === 0}
-            aria-label="Aba anterior"
+            aria-label={content.previousLabel}
           >
             <i className="fa-solid fa-arrow-left" aria-hidden="true" />
           </button>
           <span className="pager__dots">
-            {links.map(([link], index) => (
-              <i className={active === index ? 'on' : ''} key={link} />
+            {content.navigation.map((link, index) => (
+              <i className={active === index ? 'on' : ''} key={link.id} />
             ))}
           </span>
           <button
             className="pager__btn"
             onClick={() => go(active + 1)}
-            disabled={active === links.length - 1}
-            aria-label="Próxima aba"
+            disabled={active === content.navigation.length - 1}
+            aria-label={content.nextLabel}
           >
             <i className="fa-solid fa-arrow-right" aria-hidden="true" />
           </button>
         </div>
         <button className="pill-btn pill-btn--li" type="button" onClick={() => go(3)}>
           <i className="li-ic fa-solid fa-envelope" aria-hidden="true" />
-          <span className="lbl">Contato</span>
+          <span className="lbl">{content.contactLabel}</span>
         </button>
       </div>
     </header>

@@ -1,14 +1,19 @@
-import type { PortfolioProject } from '@/features/portfolio-experience/data/portfolio';
+import type {
+  PortfolioContent,
+  PortfolioProject,
+} from '@/features/portfolio-experience/data/portfolio';
 import { MediaFallback } from '@/features/portfolio-experience/components/MediaFallback';
 import './ProjectOverlay.css';
 export function ProjectOverlay({
   project,
+  content,
   close,
   mode,
   anchor,
   cancelHide,
 }: {
   project: PortfolioProject | null;
+  content: PortfolioContent['overlay'];
   close: () => void;
   mode: 'preview' | 'sheet';
   anchor: DOMRect | null;
@@ -53,13 +58,13 @@ export function ProjectOverlay({
         className={`pop is-open ${mode === 'sheet' ? 'is-sheet' : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Detalhes do projeto"
+        aria-label={content.dialogLabel}
         style={previewStyle}
         onClick={(event) => event.stopPropagation()}
         onMouseEnter={cancelHide}
         onMouseLeave={mode === 'preview' ? close : undefined}
       >
-        <button className="pop__close" onClick={close} aria-label="Fechar">
+        <button className="pop__close" onClick={close} aria-label={content.closeLabel}>
           ✕
         </button>
         <div className="pop__media">
@@ -70,11 +75,15 @@ export function ProjectOverlay({
               <i />
             </span>
             <span className="browser__url">
-              {project.url?.replace(/^https?:\/\//, '') ?? 'lorem-ipsum.example'}
+              {project.url?.replace(/^https?:\/\//, '') ?? content.browserFallbackUrl}
             </span>
           </div>
           <div className="shot shot--ph">
-            <MediaFallback variant="project" label="Lorem ipsum dolor" />
+            <MediaFallback
+              imageUrl={project.imageUrl}
+              variant="project"
+              label={content.media.alt}
+            />
           </div>
         </div>
         <div className="pop__body">
@@ -93,10 +102,10 @@ export function ProjectOverlay({
               target="_blank"
               rel="noreferrer"
             >
-              Visitar projeto ↗
+              {content.visitProjectLabel}
             </a>
           ) : (
-            <span className="pop__private">Lorem ipsum dolor sit amet.</span>
+            <span className="pop__private">{content.privateProjectLabel}</span>
           )}
         </div>
       </div>

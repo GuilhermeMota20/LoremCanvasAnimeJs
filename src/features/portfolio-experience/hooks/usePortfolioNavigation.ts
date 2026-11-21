@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const totalSlides = 4;
+export type SlideDirection = 1 | -1;
+
 export function usePortfolioNavigation(onChange?: () => void) {
   const [active, setActive] = useState(0);
   const [locked, setLocked] = useState(false);
+  const [direction, setDirection] = useState<SlideDirection>(1);
   const touchStart = useRef<number | null>(null);
   const transition = useRef(false);
   const go = useCallback(
@@ -12,12 +15,13 @@ export function usePortfolioNavigation(onChange?: () => void) {
       if (transition.current || next === active) return;
       transition.current = true;
       onChange?.();
+      setDirection(next > active ? 1 : -1);
       setLocked(true);
-      window.setTimeout(() => setActive(next), 510);
+      setActive(next);
       window.setTimeout(() => {
         setLocked(false);
         transition.current = false;
-      }, 1150);
+      }, 1_550);
     },
     [active, onChange],
   );
@@ -31,6 +35,7 @@ export function usePortfolioNavigation(onChange?: () => void) {
   }, [active, go]);
   return {
     active,
+    direction,
     locked,
     go,
     onTouchStart: (x: number) => {

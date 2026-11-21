@@ -21,7 +21,7 @@ export function PortfolioExperience() {
   const overlay = useProjectOverlay();
   const navigation = usePortfolioNavigation(overlay.close);
   const viewportRef = useOrnamentsParallax(navigation.active);
-  useExperienceMotion(viewportRef, navigation.active);
+  useExperienceMotion(viewportRef, navigation.active, navigation.direction);
 
   useEffect(() => {
     document.title = content.meta.productName;
@@ -36,7 +36,7 @@ export function PortfolioExperience() {
         onTouchStart={(event) => navigation.onTouchStart(event.touches[0].clientX)}
         onTouchEnd={(event) => navigation.onTouchEnd(event.changedTouches[0].clientX)}
       >
-        <div className="track" style={{ transform: `translateX(-${navigation.active * 100}%)` }}>
+        <div className="track">
           <HeroSlide content={content} go={navigation.go} />
           <ProjectsSlide
             content={content}
@@ -47,10 +47,7 @@ export function PortfolioExperience() {
           <AboutSlide content={content.about} />
           <ContactSlide content={content.contact} go={navigation.go} />
         </div>
-        <div
-          className="ornament-track"
-          style={{ transform: `translateX(-${navigation.active * 100}%)` }}
-        >
+        <div className="ornament-track">
           {content.header.navigation.map((page, index) => (
             <div className="ornament-slide" data-index={index} key={page.id}>
               <Ornaments index={index} />
